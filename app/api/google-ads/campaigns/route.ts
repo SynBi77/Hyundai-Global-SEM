@@ -22,6 +22,64 @@ export async function GET(request: Request) {
         return NextResponse.json({ error: "Missing configuration or customerId" }, { status: 400 });
     }
 
+    // CHECK FOR MOCK ACCOUNTS
+    const MOCK_IDS = ["1234567890", "0987654321", "1122334455"];
+    if (MOCK_IDS.includes(customerId)) {
+        console.log(`API: Returning MOCK DATA for customer ${customerId}`);
+        return NextResponse.json({
+            campaigns: [
+                {
+                    id: "101",
+                    name: "Global Brand Search (Mock)",
+                    status: "ENABLED",
+                    advertisingChannelType: "SEARCH",
+                    biddingStrategyType: "MAXIMIZE_CONVERSIONS",
+                    budget: 5000000000, // 5000 units
+                    metrics: {
+                        impressions: 150000,
+                        clicks: 3200,
+                        costMicros: 4500000000, // 4500 units
+                        searchLostIsRank: 0.15,
+                    },
+                },
+                {
+                    id: "102",
+                    name: "EV Promotion Q1 (Mock)",
+                    status: "ENABLED",
+                    advertisingChannelType: "SEARCH",
+                    biddingStrategyType: "TARGET_CPA",
+                    budget: 8000000000,
+                    metrics: {
+                        impressions: 210000,
+                        clicks: 5600,
+                        costMicros: 7200000000,
+                        searchLostIsRank: 0.08,
+                    },
+                },
+            ],
+            adGroups: [
+                {
+                    id: "201",
+                    name: "Brand Gen (Mock)",
+                    campaignId: "101",
+                    status: "ENABLED",
+                    type: "SEARCH_STANDARD",
+                    adStrength: "EXCELLENT",
+                    metrics: { impressions: 80000 },
+                },
+                {
+                    id: "202",
+                    name: "IONIQ 5 Keywords (Mock)",
+                    campaignId: "102",
+                    status: "ENABLED",
+                    type: "SEARCH_STANDARD",
+                    adStrength: "GOOD",
+                    metrics: { impressions: 120000 },
+                },
+            ],
+        });
+    }
+
     const config = {
         accessToken: session.accessToken,
         customerId,
