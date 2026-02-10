@@ -6,6 +6,12 @@ This is a Next.js application for the Hyundai Global SEM Dashboard.
 
 Since you are running this from home to bypass the corporate network block, follow these steps:
 
+### 0. Prerequisites (For Windows)
+If you haven't installed them yet, download and install:
+- [Node.js (LTS Version)](https://nodejs.org/) - Required to run the app.
+- [Git for Windows](https://git-scm.com/download/win) - Required to download the code.
+- [VS Code](https://code.visualstudio.com/) - Recommended editor.
+
 ### 1. Clone the Repository
 Open your terminal (or Command Prompt) and run:
 ```bash
